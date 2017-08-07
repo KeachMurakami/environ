@@ -44,7 +44,7 @@ by_year <-
   function(env_df){
     env_df %>%
       dplyr::mutate(time = lubridate::year(time)) %>%
-      dplyr::group_by_(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
     }
 
 by_month <-
@@ -52,14 +52,14 @@ by_month <-
     env_df %>%
       dplyr::mutate(time = paste0(lubridate::year(time), "-",
                                   stringr::str_pad(lubridate::month(time), 2, pad = "0"))) %>%
-      dplyr::group_by(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
   }
 
 by_day <-
   function(env_df){
     env_df %>%
       dplyr::mutate(time = lubridate::date(time)) %>%
-      dplyr::group_by(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
   }
 
 by_hour <-
@@ -68,7 +68,7 @@ by_hour <-
       dplyr::mutate(time = paste0(lubridate::date(time), " ",
                                   stringr::str_pad(lubridate::hour(time), 2, pad = "0")),
                     time = lubridate::ymd_h(time)) %>%
-      dplyr::group_by(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
   }
 
 
@@ -79,7 +79,7 @@ by_minute <-
                                   stringr::str_pad(lubridate::hour(time), 2, pad = "0"), ":",
                                   stringr::str_pad(lubridate::minute(time), 2, pad = "0")),
                     time = lubridate::ymd_hm(time)) %>%
-      dplyr::group_by(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
   }
 
 by_second <-
@@ -90,7 +90,7 @@ by_second <-
                                   stringr::str_pad(lubridate::minute(time), 2, pad = "0"), ":",
                                   stringr::str_pad(lubridate::second(time), 2, pad = "0")),
                     time = lubridate::ymd_hms(time)) %>%
-      dplyr::group_by(logger, id, channel, variable, time)
+      dplyr::group_by(logger, id, channel, variable, time, add = T)
   }
 
 by_condition_daily <-
