@@ -1,3 +1,9 @@
+#' @param
+#'
+#' @return data.table object
+#'
+#' @export
+
 read_env <- function(logger_type = "mch",
                      logger_id = "1",
                      start_time = lubridate::now() - lubridate::days(7),
