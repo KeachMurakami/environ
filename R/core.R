@@ -1,14 +1,32 @@
+#' @param
+#'
+#' @return data.table object
+#'
+#' @export
+
 set_calibration_table <-
   function(path){
     calibration_table <<-
       data.table::fread(path)
   }
 
+#' @param
+#'
+#' @return data.table object
+#'
+#' @export
+
 env_stat <-
   function(grouped_env_df){
     grouped_env_df %>%
       summarise(mean = mean(value), sd = sd(value), n = n())
   }
+
+#' @param
+#'
+#' @return data.table object
+#'
+#' @export
 
 env_timecourse <-
   function(env_df, ...){
@@ -25,6 +43,13 @@ env_timecourse <-
         facet_grid(variable ~ ., scale = "free")
     }
   }
+
+
+#' @param
+#'
+#' @return data.table object
+#'
+#' @export
 
 env_hist <-
   function(env_df, ...){
